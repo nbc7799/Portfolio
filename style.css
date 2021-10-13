@@ -154,7 +154,7 @@ p {
 .home__title,
 .home__subTitle {
   color: var(--color-white);
-  line-height: 50px;
+  line-height: 49px;
 }
 
 .home__subTitle {
