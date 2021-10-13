@@ -107,7 +107,7 @@ p {
 
 .navbar__toggle-btn {
   position: absolute;
-  right: 16px;
+  right: 8px;
   top: 16px;
   font-size: var(--font-medium);
   color: var(--color-white);
@@ -450,12 +450,13 @@ p {
   }
 
   .home__title {
-    font-size: 32px;
+    font-size: 36px;
     line-height: 48px;
   }
 
   .home__subTitle {
     line-height: 30px;
+    font-size: 16px;
   }
   .about__majors {
     flex-direction: column;
