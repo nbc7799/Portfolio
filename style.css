@@ -107,7 +107,7 @@ p {
 
 .navbar__toggle-btn {
   position: absolute;
-  right: 32px;
+  right: 16px;
   top: 16px;
   font-size: var(--font-medium);
   color: var(--color-white);
@@ -127,6 +127,7 @@ p {
   padding: 8px 12px;
   margin: 0 4px;
   cursor: pointer;
+  border: 1px solid transparent;
 }
 
 .navbar__item:hover {
@@ -219,15 +220,13 @@ p {
   width: 50px;
 }
 
-.about__jobs {
-}
 .job {
   display: flex;
   align-items: center;
 }
 
 .job__description {
-  margin: 0 16px;
+  margin: 4px 12px;
   text-align: left;
 }
 
@@ -258,6 +257,7 @@ p {
 
 .skillset__title {
   color: var(--color-white);
+  margin-bottom: 24px;
 }
 
 .skillset__letf {
@@ -434,6 +434,9 @@ p {
     display: block;
   }
 
+  .section {
+    padding: 28px;
+  }
   #navbar {
     flex-direction: column;
     align-items: flex-start;
@@ -446,6 +449,14 @@ p {
     display: none;
   }
 
+  .home__title {
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  .home__subTitle {
+    line-height: 30px;
+  }
   .about__majors {
     flex-direction: column;
     margin: 20px;
