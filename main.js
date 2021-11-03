@@ -19,15 +19,27 @@ const navbarmenu = document.querySelector('.navbar__menu')
 navbarmenu.addEventListener('click', (event) => {
     const target = event.target
     const link = target.dataset.link
+//이렇게 두번나눠서 쓰는이유는 나중에 target의 다른항목에 또 접근해야
+//할 일이생길때 중복해서 쓰지않기위함  즉 이게 더 효율적!!
 
     if(link === null){
         return
     }
-
-    console.log(event.target.dataset.link)
-    const scrollTo = document.querySelector(link)
-    scrollTo.scrollIntoView({behavior: 'smooth', block: 'center'});
+    scrollIntoView(link)
 })
+
+
+// handle scrolling when tapping on the contact button
+const contactBtn = document.querySelector('.home__contact')
+
+contactBtn.addEventListener('click', () => {
+    scrollIntoView('.contact')
+})
+
+function scrollIntoView(selector) {
+    const scrollTo = document.querySelector(selector)
+    scrollTo.scrollIntoView({behavior: 'smooth', block: 'center'})
+}
 
 
 
