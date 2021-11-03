@@ -1,8 +1,8 @@
-// seclect navbar menu
+//------- seclect navbar menu
 const navBar = document.querySelector('.navbar')
 const navHeight = navBar.getBoundingClientRect().height;
 
-// navbar scrool funtion
+//-------- navbar scrool funtion
 document.addEventListener('scroll', () => {
 
     if(window.pageYOffset > navHeight/2) {
@@ -12,10 +12,9 @@ document.addEventListener('scroll', () => {
     }
 })
 
-//handle scrolling when tapping on the navbar menu
+//-------handle scrolling when tapping on the navbar menu
 const navbarmenu = document.querySelector('.navbar__menu')
 
-// 엘리가 짠 코드
 navbarmenu.addEventListener('click', (event) => {
     const target = event.target
     const link = target.dataset.link
@@ -29,7 +28,7 @@ navbarmenu.addEventListener('click', (event) => {
 })
 
 
-// handle scrolling when tapping on the contact button
+//------------ handle scrolling when tapping on the contact button
 const contactBtn = document.querySelector('.home__contact')
 
 contactBtn.addEventListener('click', () => {
@@ -40,6 +39,26 @@ function scrollIntoView(selector) {
     const scrollTo = document.querySelector(selector)
     scrollTo.scrollIntoView({behavior: 'smooth', block: 'center'})
 }
+
+
+// -------- Transparent home
+const padeHome = document.querySelector('.pade-home')
+const homeCont = document.querySelector('.home-container')
+const homeHight = homeCont.getBoundingClientRect().height;
+
+document.addEventListener('scroll', () => {
+    console.log(scrollY)
+    if(window.pageYOffset <= homeHight) {
+        const opacity =  1 - window.pageYOffset / homeHight
+        homeCont.style.opacity = opacity;
+    }
+    
+})
+
+
+
+
+
 
 
 
