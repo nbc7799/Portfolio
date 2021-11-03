@@ -35,11 +35,6 @@ contactBtn.addEventListener('click', () => {
     scrollIntoView('.contact')
 })
 
-function scrollIntoView(selector) {
-    const scrollTo = document.querySelector(selector)
-    scrollTo.scrollIntoView({behavior: 'smooth', block: 'center'})
-}
-
 
 // -------- Transparent home
 const padeHome = document.querySelector('.pade-home')
@@ -47,7 +42,7 @@ const homeCont = document.querySelector('.home-container')
 const homeHight = homeCont.getBoundingClientRect().height;
 
 document.addEventListener('scroll', () => {
-    console.log(scrollY)
+
     if(window.pageYOffset <= homeHight) {
         const opacity =  1 - window.pageYOffset / homeHight
         homeCont.style.opacity = opacity;
@@ -55,10 +50,40 @@ document.addEventListener('scroll', () => {
     
 })
 
+//Show Arrow up btn
+const upBtn = document.querySelector('.up-button')
+const skills = document.querySelector('.skills')
+const skillsHight = skills.getBoundingClientRect().height
 
+document.addEventListener('scroll', () => {
+    if(window.pageYOffset <= skillsHight/3) {
+        upBtn.classList.remove('visible')
+    }else {
+        upBtn.classList.add('visible')
+    }
+})
 
+// click on the ''arrow up'
 
+upBtn.addEventListener('click', () => {
+    scrollIntoView('.home')
+})
 
+//버튼 두번클릭 안되게
+// const handleArrowUp = () => {
+//     scrollIntoView('.home');
+//     upBtn.removeEventListener('click', handleArrowUp);
+
+//     setTimeout(() => {
+//         upBtn.addEventListener('click', handleArrowUp);
+//     },1000);
+// };
+
+// upBtn.addEventListener('click', handleArrowUp);
+function scrollIntoView(selector) {
+    const scrollTo = document.querySelector(selector)
+    scrollTo.scrollIntoView({behavior: 'smooth', block: 'center'})
+}
 
 
 

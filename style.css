@@ -200,6 +200,7 @@ p {
 }
 
 /* About */
+
 .about__majors {
   display: flex;
   justify-content: space-around;
@@ -445,6 +446,27 @@ p {
   color: var(--color-yellow);
 }
 
+/* Arrow up */
+.up-button {
+  position: fixed;
+  right: 20px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  border-radius: 50%;
+  padding: 0;
+  color: var(--color-white);
+  background-color: var(--color-pink);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease-in;
+}
+
+.up-button.visible {
+  opacity: 1;
+  pointer-events: visible;
+}
 /* For below 768px screen width */
 @media screen and (max-width: 768px) {
   .navbar__toggle-btn {
