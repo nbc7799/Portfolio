@@ -27,19 +27,17 @@
 
   <body>
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
       <div class="navbar__logo">
         <a href="#"> <img src="" alt="" />Jun </a>
       </div>
-      <div class="navbar__container">
-        <ul class="navbar__menu">
-          <li class="navbar__item active" data-link=".home">Home</li>
-          <li class="navbar__item" data-link=".about">About</li>
-          <li class="navbar__item" data-link=".skills">Skills</li>
-          <li class="navbar__item" data-link=".works">Works</li>
-          <li class="navbar__item" data-link=".contact">Contact</li>
-        </ul>
-      </div>
+      <ul class="navbar__menu">
+        <li class="navbar__item" data-link=".home">Home</li>
+        <li class="navbar__item" data-link=".about">About</li>
+        <li class="navbar__item" data-link=".skills">Skills</li>
+        <li class="navbar__item" data-link=".works">Works</li>
+        <li class="navbar__item" data-link=".contact">Contact</li>
+      </ul>
 
       <!-- Toggle button -->
       <button class="navbar__toggle-btn">
@@ -198,17 +196,17 @@
       <h1>My work</h1>
       <h3>Projects</h3>
       <div class="work__categories">
-        <button class="category__btn">
-          All<span class="category__count">8</span>
+        <button class="category__btn selected" data-filter="*">
+          All<span class="category__count">4</span>
         </button>
-        <button class="category__btn">
-          Javascript<span class="category__count">2</span>
+        <button class="category__btn" data-filter="js">
+          Javascript<span class="category__count">3</span>
         </button>
-        <button class="category__btn">
-          React<span class="category__count">4</span>
+        <button class="category__btn" data-filter="react">
+          React<span class="category__count">0</span>
         </button>
-        <button class="category__btn">
-          Styling<span class="category__count">2</span>
+        <button class="category__btn" data-filter="css">
+          Styling<span class="category__count">3</span>
         </button>
       </div>
       <div class="work__projects">
@@ -216,6 +214,7 @@
           href="https://nbc7799.github.io/crome-app/"
           class="project"
           target="blank"
+          data-type="js"
         >
           <img src="imgs/project01.jpg" alt="" class="project__img" />
           <div class="project__description">
@@ -227,6 +226,7 @@
           href="https://nbc7799.github.io/practice-kokoa/"
           class="project"
           target="blank"
+          data-type="css"
         >
           <img src="imgs/project02.jpg" alt="" class="project__img" />
           <div class="project__description">
@@ -234,14 +234,14 @@
             <span>Clone coding with HTML,CSS,JS</span>
           </div>
         </a>
-        <a href="" class="project" target="blank">
+        <a href="" class="project" target="blank" data-type="js">
           <img src="imgs/bucktet.jpg" alt="" class="project__img" />
           <div class="project__description">
             <h3>Bucket-List</h3>
             <span>Clone coding with HTML,CSS and JS</span>
           </div>
         </a>
-        <a href="" class="project" target="blank">
+        <a href="" class="project" target="blank" data-type="css">
           <img
             src="imgs/navbar-200518-191508.png"
             alt=""
@@ -252,29 +252,7 @@
             <span>Clone coding with HTML and CSS</span>
           </div>
         </a>
-        <a href="" class="project" target="blank">
-          <img
-            src="imgs/navbar-200518-191508.png"
-            alt=""
-            class="project__img"
-          />
-          <div class="project__description">
-            <h3>Youtube site</h3>
-            <span>Clone coding with HTML and CSS</span>
-          </div>
-        </a>
-        <a href="" class="project" target="blank">
-          <img
-            src="imgs/navbar-200518-191508.png"
-            alt=""
-            class="project__img"
-          />
-          <div class="project__description">
-            <h3>Youtube site</h3>
-            <span>Clone coding with HTML and CSS</span>
-          </div>
-        </a>
-        <a href="" class="project" target="blank">
+        <a href="" class="project" target="blank" data-type="css">
           <img
             src="imgs/navbar-200518-191508.png"
             alt=""
