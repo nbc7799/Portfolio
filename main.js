@@ -3,22 +3,54 @@ const navBar = document.querySelector('.navbar')
 const navHeight = navBar.getBoundingClientRect().height;
 const navbarmenu = document.querySelector('.navbar__menu')
 //-------- navbar scrool funtion that add navigation class
-document.addEventListener('scroll', () => {
-
+window.addEventListener('scroll', () => {
     if(window.pageYOffset > navHeight/2) {
         navBar.classList.add('navigation');
     }else {
         navBar.classList.remove('navigation');
     }
     navbarmenu.classList.remove('open')
-
 })
 
 // -------- Active Navbar munu icon when scrolling the menuY -jun
+    // const sections = document.querySelectorAll('section')
+
+    
+    // function memuActive(btn) {
+    //     const childs = navbarmenu.children
+    //     for(let child of childs) {
+    //         if(child.dataset.link === btn){
+    //             child.classList.add('active')
+    //         }else {
+    //             child.classList.remove('active')
+    //         }
+    //     }
+    // }
+
+    // const options = {
+    //     root: null,
+    //     threshold: 0.7,
+    // }
+    
+    // const callback = (entries, observer) => {
+    //     entries.forEach((entry) => {
+    //         if(entry.isIntersecting) {
+    //             const target = entry.target
+    //             const btn = target.dataset.btn
+    //             memuActive(btn)
+    //         }
+    //     })
+    // }
+
+    // const observer = new IntersectionObserver(callback, options)
+    // sections.forEach((section) => observer.observe(section));
+
+
+
+// -------- Active Navbar munu icon when scrolling the menuY -eliie
 // 1. 모든 섹션 요소들을 가지고 온다
 // 2. IntersectionObserver 이용해서 모든 섹션들을 관찰한다
 // 3. 보여지는 섹션에 해당하는 메뉴 아이템을 활성화 시킨다.
-
 const sectionClasses = [
     '.home',
     '.about',
@@ -26,10 +58,12 @@ const sectionClasses = [
     '.works',
     '.contact',
 ]
-
+console.log(sectionClasses)
 const sections = sectionClasses.map(id => document.querySelector(id));
+//sections에는 만약 home이 들어가면 '.home' 이런 형태로 들어간다
+console.log(sections)
 const navItems = sectionClasses.map(id => document.querySelector(`[data-link="${id}"]`))
-
+console.log(typeof(navItems), navItems)
 let selectedNavIndex = 0;
 let selectedNavItem = navItems[0];
 
@@ -37,12 +71,6 @@ function selectNavItem(selected) {
     selectedNavItem.classList.remove('active')
     selectedNavItem = selected;
     selectedNavItem.classList.add('active')
-}
-
-function scrollIntoView(selector) {
-    const scrollTo = document.querySelector(selector)
-    scrollTo.scrollIntoView({behavior: 'smooth', block: 'center'})
-    selectNavItem(navItems[sectionClasses.indexOf(selector)])
 }
 
 const observerOptions = {
@@ -54,6 +82,7 @@ const observerOptions = {
 const observerCallback = (entries, observer) => {
     entries.forEach(entry => {
         if(!entry.isIntersecting && entry.intersectionRatio > 0) {
+            console.log(entry)
         const index = sectionClasses.indexOf(`${entry.target.dataset.btn}`)
         //스크롤링이 아래로 되어서 페이지가 올라옴
         if(entry.boundingClientRect.y < 0) {
@@ -76,68 +105,6 @@ window.addEventListener('wheel', () => {
     }
     selectNavItem(navItems[selectedNavIndex]);
 })
-
-
-
-
-
-// -------- Active Navbar munu icon when scrolling the menuY -jun
-    // const sections = document.querySelectorAll('section')
-    // const navBarItem = document.querySelector('.navbar__item')
-    
-    // function same(btn) {
-    //     const childs = navbarmenu.children
-    //     for(let child of childs) {
-    //         if(child.dataset.link === btn){
-    //             child.classList.add('active')
-    //         }else {
-    //             child.classList.remove('active')
-    //         }
-    //     }
-    // }
-
-    // const options = {
-    //     root: null,
-    //     threshold: 0.7,
-    // }
-    
-    // const callback = (entries, observer) => {
-    //     entries.forEach((entry) => {
-    //         if(entry.isIntersecting) {
-    //             const target = entry.target
-    //             const btn = target.dataset.btn
-    //             same(btn)
-    //         }
-    //     })
-    // }
-
-    // const observer = new IntersectionObserver(callback, options)
-    // sections.forEach((section) => observer.observe(section));
-
-
-// document.addEventListener('scroll', () => {
-//     const pageY = Math.round(window.pageYOffset/10)*10
-//     // console.log(pageY)
-
-//     const sections = document.querySelectorAll('section')
-//     sections.forEach((section) => {
-//         const sectionsY = Math.round((section.getBoundingClientRect().top + window.pageYOffset)/10)*10
-//         // console.log(sectionsY)
-
-//         if(pageY === sectionsY) {
-//             const menuClass = document.querySelector(link)
-//             menuClass.classList
-//         }
-//     })
-// })
-
-//     function scrollIntoView(selector) {
-//         const scrollTo = document.querySelector(selector)
-//         scrollTo.scrollIntoView({behavior: 'smooth', block: 'center'})
-//     }
-
-
-
 
 // const navbarmenu = document.querySelector('.navbar__menu') - jun
 // function quickMenu(text) {
@@ -172,7 +139,6 @@ window.addEventListener('wheel', () => {
 
 
 //-------handle scrolling when tapping on the navbar menu
-
 navbarmenu.addEventListener('click', (event) => {
     const target = event.target
     const link = target.dataset.link
@@ -181,9 +147,14 @@ navbarmenu.addEventListener('click', (event) => {
     if(link === null){
         return;
     }
-    
     scrollIntoView(link)
 })
+
+function scrollIntoView(selector) {
+    const scrollTo = document.querySelector(selector)
+    scrollTo.scrollIntoView({behavior: 'smooth', block: 'center'})
+    selectNavItem(navItems[sectionClasses.indexOf(selector)])
+}
 
 //Navbar toggle button for small screen
 const navbarToggleBtn = document.querySelector('.navbar__toggle-btn')
@@ -203,7 +174,6 @@ contactBtn.addEventListener('click', () => {
 
 
 // -------- Transparent home
-const padeHome = document.querySelector('.pade-home')
 const homeCont = document.querySelector('.home-container')
 const homeHight = homeCont.getBoundingClientRect().height;
 
@@ -222,7 +192,7 @@ const skills = document.querySelector('.skills')
 const skillsHight = skills.getBoundingClientRect().height
 
 document.addEventListener('scroll', () => {
-    if(window.pageYOffset <= skillsHight/3) {
+    if(window.pageYOffset <= skillsHight) {
         upBtn.classList.remove('visible')
     }else {
         upBtn.classList.add('visible')
@@ -230,7 +200,6 @@ document.addEventListener('scroll', () => {
 })
 
 // click on the ''arrow up'
-
 upBtn.addEventListener('click', () => {
     scrollIntoView('.home')
 })
@@ -255,22 +224,20 @@ upBtn.addEventListener('click', () => {
 //     const target = event.target
 //     const targetClass = target.dataset.class
 //     console.log(targetClass.childNodes)
-
 //     showSelector(targetClass)
 // })
 
 // function showSelector (select) {
 //     const showSelect = document.querySelectorAll(select)
 //     console.log(showSelect)
-
 //     const projects = document.querySelector('.work__projects')
 //     const content = showSelect.childNodes
 
-// show work when i tapping my work category
+
+// show work when i tapping my work category - ellie
 const workBtnContainer = document.querySelector('.work__categories')
 const projectContainer = document.querySelector('.work__projects')
 const projects = document.querySelectorAll('.project')
-
 
 //selectorAll 사용하면 배열로 반환
 workBtnContainer.addEventListener('click', (e) => {
@@ -290,7 +257,7 @@ workBtnContainer.addEventListener('click', (e) => {
 
     projects.forEach((project) => {
         // forEach사용해서 project안에 project들 각각 if문
-    projectContainer.classList.add('anim-out');
+    projectContainer.classList.add('animation-out');
     setTimeout(() => {
         if(filter === '*' || filter === project.dataset.type) {
             // || or연산자사용해서 둘중에 하나라도 만족하면 나타나게
@@ -298,7 +265,8 @@ workBtnContainer.addEventListener('click', (e) => {
         }else {
             project.classList.add('invisible')
         }
-            projectContainer.classList.remove('anim-out');
+            projectContainer.classList.remove('animation-out');
+            // 'anim-out'은 밑에서 위로 올라오는 효과
         },300)
     });
 
