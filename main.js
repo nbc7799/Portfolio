@@ -1,8 +1,8 @@
 //------- seclect navbar menu
 const navBar = document.querySelector('.navbar')
 const navHeight = navBar.getBoundingClientRect().height;
-
-//-------- navbar scrool funtion
+const navbarmenu = document.querySelector('.navbar__menu')
+//-------- navbar scrool funtion that add navigation class
 document.addEventListener('scroll', () => {
 
     if(window.pageYOffset > navHeight/2) {
@@ -12,12 +12,134 @@ document.addEventListener('scroll', () => {
     }
     navbarmenu.classList.remove('open')
 
+})
 
+// -------- Active Navbar munu icon when scrolling the menuY -jun
+// 1. 모든 섹션 요소들을 가지고 온다
+// 2. IntersectionObserver 이용해서 모든 섹션들을 관찰한다
+// 3. 보여지는 섹션에 해당하는 메뉴 아이템을 활성화 시킨다.
+
+const sectionClasses = [
+    '.home',
+    '.about',
+    '.skills',
+    '.works',
+    '.contact',
+]
+
+const sections = sectionClasses.map(id => document.querySelector(id));
+const navItems = sectionClasses.map(id => document.querySelector(`[data-link="${id}"]`))
+
+let selectedNavIndex = 0;
+let selectedNavItem = navItems[0];
+
+function selectNavItem(selected) {
+    selectedNavItem.classList.remove('active')
+    selectedNavItem = selected;
+    selectedNavItem.classList.add('active')
+}
+
+function scrollIntoView(selector) {
+    const scrollTo = document.querySelector(selector)
+    scrollTo.scrollIntoView({behavior: 'smooth', block: 'center'})
+    selectNavItem(navItems[sectionClasses.indexOf(selector)])
+}
+
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.7,
+}
+
+const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+        if(!entry.isIntersecting && entry.intersectionRatio > 0) {
+        const index = sectionClasses.indexOf(`${entry.target.dataset.btn}`)
+        //스크롤링이 아래로 되어서 페이지가 올라옴
+        if(entry.boundingClientRect.y < 0) {
+            selectedNavIndex = index + 1 ;
+        }else {
+            selectedNavIndex = index -1;
+        }
+        }
+    })
+};
+
+const observer = new IntersectionObserver(observerCallback, observerOptions );
+sections.forEach(section => observer.observe(section))
+
+window.addEventListener('wheel', () => {
+    if(window.scrollY === 0) {
+        selectedNavIndex = 0;
+    }else if( window.scrollY + window.innerHeight === document.body.clientHeight){
+        selectedNavIndex = navItems.length - 1;
+    }
+    selectNavItem(navItems[selectedNavIndex]);
 })
 
 
-// const navbarmenu = document.querySelector('.navbar__menu') - jun
 
+
+
+// -------- Active Navbar munu icon when scrolling the menuY -jun
+    // const sections = document.querySelectorAll('section')
+    // const navBarItem = document.querySelector('.navbar__item')
+    
+    // function same(btn) {
+    //     const childs = navbarmenu.children
+    //     for(let child of childs) {
+    //         if(child.dataset.link === btn){
+    //             child.classList.add('active')
+    //         }else {
+    //             child.classList.remove('active')
+    //         }
+    //     }
+    // }
+
+    // const options = {
+    //     root: null,
+    //     threshold: 0.7,
+    // }
+    
+    // const callback = (entries, observer) => {
+    //     entries.forEach((entry) => {
+    //         if(entry.isIntersecting) {
+    //             const target = entry.target
+    //             const btn = target.dataset.btn
+    //             same(btn)
+    //         }
+    //     })
+    // }
+
+    // const observer = new IntersectionObserver(callback, options)
+    // sections.forEach((section) => observer.observe(section));
+
+
+// document.addEventListener('scroll', () => {
+//     const pageY = Math.round(window.pageYOffset/10)*10
+//     // console.log(pageY)
+
+//     const sections = document.querySelectorAll('section')
+//     sections.forEach((section) => {
+//         const sectionsY = Math.round((section.getBoundingClientRect().top + window.pageYOffset)/10)*10
+//         // console.log(sectionsY)
+
+//         if(pageY === sectionsY) {
+//             const menuClass = document.querySelector(link)
+//             menuClass.classList
+//         }
+//     })
+// })
+
+//     function scrollIntoView(selector) {
+//         const scrollTo = document.querySelector(selector)
+//         scrollTo.scrollIntoView({behavior: 'smooth', block: 'center'})
+//     }
+
+
+
+
+// const navbarmenu = document.querySelector('.navbar__menu') - jun
 // function quickMenu(text) {
 //     const home = document.querySelector('.home')
 //     const about = document.querySelector('.about')
@@ -36,25 +158,21 @@ document.addEventListener('scroll', () => {
 //     }else {
 //         home.scrollIntoView({behavior: 'smooth'});
 //     }
-    
 // }
-
 
 // navbarmenu.addEventListener('click', (event)=> {
 //     const target = event.target
 //     const innerText = target.innerText
-
 //     if(innerText === null ) {
 //         return
 //     }
-
 //     console.log(innerText)
 //    const scrollTo = document.querySelector()
 // })
 
 
 //-------handle scrolling when tapping on the navbar menu
-const navbarmenu = document.querySelector('.navbar__menu')
+
 navbarmenu.addEventListener('click', (event) => {
     const target = event.target
     const link = target.dataset.link
@@ -128,10 +246,7 @@ upBtn.addEventListener('click', () => {
 // };
 
 // upBtn.addEventListener('click', handleArrowUp);
-function scrollIntoView(selector) {
-    const scrollTo = document.querySelector(selector)
-    scrollTo.scrollIntoView({behavior: 'smooth', block: 'center'})
-}
+
 
 // click event when i tapping my work category - jun
 // const workCategory = document.querySelector('.work__categories')
@@ -199,4 +314,3 @@ workBtnContainer.addEventListener('click', (e) => {
     //     console.log(project);
     // }
 })
-

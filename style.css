@@ -153,7 +153,10 @@ p {
 .navbar__item.active {
   border: 1px solid var(--color-white);
   border-radius: var(--size-border-radius);
+  background-color: var(--color-dark-pink);
+  transition: all 300ms ease-in;
 }
+
 /* Home */
 .home {
   background: url(imgs/homebackground-200515-154505.png) center/cover no-repeat;
@@ -188,6 +191,10 @@ p {
   padding: 8px 12px;
   border: 2px solid var(--color-white);
   border-radius: var(--size-border-radius);
+}
+
+.home__contact:hover {
+  background-color: var(--color-orange);
 }
 
 /* Section common */
@@ -486,6 +493,15 @@ p {
 }
 /* For below 768px screen width */
 @media screen and (max-width: 768px) {
+  :root {
+    /* Font Size */
+    --font-large: 30px;
+    --font-medium: 18px;
+    --font-regular: 16px;
+    --font-small: 14px;
+    --font-micro: 12px;
+  }
+
   .navbar__toggle-btn {
     display: block;
   }
@@ -533,6 +549,10 @@ p {
     margin: 20px;
   }
 
+  .section__container h1 {
+    padding-top: 16px;
+    margin: 0;
+  }
   .skillset {
     flex-direction: column;
   }
@@ -544,5 +564,9 @@ p {
   .home__avatar {
     width: 200px;
     height: 200px;
+  }
+
+  .section {
+    padding: 16px;
   }
 }
