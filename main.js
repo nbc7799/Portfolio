@@ -58,6 +58,7 @@ const sectionClasses = [
     '.works',
     '.contact',
 ]
+
 console.log(sectionClasses)
 const sections = sectionClasses.map(id => document.querySelector(id));
 //sections에는 만약 home이 들어가면 '.home' 이런 형태로 들어간다
@@ -244,7 +245,6 @@ workBtnContainer.addEventListener('click', (e) => {
     const filter = e.target.dataset.filter || e.target.parentNode.dataset.filter;
     //여기서 span에 숫자 클릭하면 undifiend뜨는데 이안에는 filter가 없기때문
     //그럼  span클릭시 디버깅해서 보면 dataset보면 filter없지만 parentNode가서 dataset보면 filter가 들어있음
-    console.log(e.target.nodeName)
     if(filter === null) {
         return;
     }
